@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 DATE="`date +%Y%m%d`"
 
 which debootstrap curl || {

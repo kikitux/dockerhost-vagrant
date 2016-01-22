@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 #install btrfs-tools if not present
 which btrfs || {
