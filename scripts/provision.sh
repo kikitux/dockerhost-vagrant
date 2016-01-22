@@ -2,8 +2,6 @@
 DATE="`date +%Y%m%d`"
 
 which debootstrap curl || {
-  apt-get clean
-  apt-get update
   apt-get install -y debootstrap curl
 }
 
