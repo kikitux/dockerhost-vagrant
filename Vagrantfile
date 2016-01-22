@@ -1,7 +1,8 @@
 Vagrant.configure(2) do |config|
   vm_name = "dockerhost"
   config.vm.hostname = vm_name
-  config.vm.box = "cbednarski/ubuntu-1404"
+  #config.vm.box = "cbednarski/ubuntu-1404"
+  config.vm.box = "ubuntu/trusty64"
   config.vm.provider :virtualbox do |vb|
     vb.customize ['modifyvm', :id, '--memory', '2048']
     vb.customize ['modifyvm', :id, '--cpus', '2']
