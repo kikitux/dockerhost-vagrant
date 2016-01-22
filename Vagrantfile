@@ -10,6 +10,6 @@ Vagrant.configure(2) do |config|
     vb.customize ['createhd', '--filename', disk, '--size', '5128'] unless File.exists?("disk.vdi")
     vb.customize ['storageattach', :id, '--storagectl', 'IDE Controller', '--port', 1, '--device', '0', '--type', 'hdd', '--medium', "disk.vdi"]
   end
-  config.vm.provision :shell, :path => "sdb.sh"
-  config.vm.provision :shell, :path => "provision.sh"
+  config.vm.provision :shell, :path => "scripts/sdb.sh"
+  config.vm.provision :shell, :path => "scripts/provision.sh"
 end
