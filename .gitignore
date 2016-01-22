@@ -1,3 +1,4 @@
 .bundle/
 .vagrant/
 disk.vdi
+ubuntu.*.tar
