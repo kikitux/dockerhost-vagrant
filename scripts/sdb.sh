@@ -2,7 +2,6 @@
 
 #install btrfs-tools if not present
 which btrfs || {
-  apt-get update
   apt-get install -y btrfs-tools
 }
 
