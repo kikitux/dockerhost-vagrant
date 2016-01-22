@@ -10,7 +10,10 @@ which debootstrap curl || {
 
 which docker || {
   curl -fsSL https://experimental.docker.com/ | bash
+  usermod -a -G docker vagrant
 }
+
+service docker restart
 
 # update ubuntu if exists
 # install if doesnt
