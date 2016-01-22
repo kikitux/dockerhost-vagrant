@@ -6,10 +6,13 @@ Vagrant.configure(2) do |config|
     vb.customize ['modifyvm', :id, '--memory', '2048']
     vb.customize ['modifyvm', :id, '--cpus', '2']
     vb.name=vm_name
+    #create disk for docker
     disk="disk.vdi"
     vb.customize ['createhd', '--filename', disk, '--size', '5128'] unless File.exists?("disk.vdi")
     vb.customize ['storageattach', :id, '--storagectl', 'IDE Controller', '--port', 1, '--device', '0', '--type', 'hdd', '--medium', "disk.vdi"]
   end
+  # format the disk and mount it as /var/lib/docker
   config.vm.provision :shell, :path => "scripts/sdb.sh"
+  # provision the box with docker and build/import a base ubuntu
   config.vm.provision :shell, :path => "scripts/provision.sh"
 end
