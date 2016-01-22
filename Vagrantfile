@@ -15,5 +15,5 @@ Vagrant.configure(2) do |config|
   # format the disk and mount it as /var/lib/docker
   config.vm.provision :shell, :path => "scripts/sdb.sh"
   # provision the box with docker and build/import a base ubuntu
-  config.vm.provision :shell, :path => "scripts/provision.sh"
+  #config.vm.provision :shell, :path => "scripts/provision.sh"
 end
