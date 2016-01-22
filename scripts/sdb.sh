@@ -1,9 +1,16 @@
 #!/bin/bash
+set -e
 
+#install btrfs-tools if not present
 which btrfs || {
   apt-get update
   apt-get install -y btrfs-tools
 }
+
+#check for device /dev/sdb
+[ -b /dev/sdb ]
+
+#format if no metadata present
 blkid /dev/sdb*
 if [ $? -ne 0 ]; then
   mkfs.btrfs -m single -d single /dev/sdb
