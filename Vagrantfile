@@ -1,7 +1,6 @@
 Vagrant.configure(2) do |config|
   vm_name = "dockerhost"
   config.vm.hostname = vm_name
-  #config.vm.box = "cbednarski/ubuntu-1404"
   config.vm.box = "ubuntu/trusty64"
   config.vm.provider :virtualbox do |vb|
     vb.customize ['modifyvm', :id, '--memory', '2048']
@@ -12,6 +11,8 @@ Vagrant.configure(2) do |config|
     vb.customize ['createhd', '--filename', disk, '--size', '20480'] unless File.exists?("disk.vdi")
     vb.customize ['storageattach', :id, '--storagectl', 'SATAController', '--port', 1, '--device', '0', '--type', 'hdd', '--medium', "disk.vdi"]
   end
+  #polipo proxy
+  config.vm.synced_folder "polipo", "/var/cache/polipo" , :mount_options => ["uid=13,gid=13"], create: true
   config.vm.provision :shell, :path => "scripts/proxy.sh", :run => "always"
   # format the disk and mount it as /var/lib/docker
   config.vm.provision :shell, :path => "scripts/sdb.sh"

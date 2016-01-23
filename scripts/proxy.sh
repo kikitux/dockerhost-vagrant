@@ -16,8 +16,11 @@ if [ $? -eq 0 ]; then
   #apt
   echo 'Acquire::http::proxy "http://127.0.0.1:8123";' >  /etc/apt/apt.conf.d/30proxy 
   echo 'Acquire::https::proxy "https://127.0.0.1:8123";' >> /etc/apt/apt.conf.d/30proxy 
+  #profile
+  echo '[ -f  /vagrant/proxy.env ] && source /vagrant/proxy.env' > /etc/profile.d/proxy.sh
 else
   > /vagrant/proxy.env
   > /etc/sudoers.d/proxy
   > /etc/apt/apt.conf.d/30proxy
+  > /etc/profile.d/proxy.sh
 fi
