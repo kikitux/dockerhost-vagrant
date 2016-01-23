@@ -13,8 +13,6 @@ Vagrant.configure(2) do |config|
     vb.customize ['storageattach', :id, '--storagectl', 'SATAController', '--port', 1, '--device', '0', '--type', 'hdd', '--medium', "disk.vdi"]
   end
   config.vm.provision :shell, :path => "scripts/proxy.sh", :run => "always"
-  #update apt sources to use mirror
-  config.vm.provision :shell, :path => "scripts/apt.sh"
   # format the disk and mount it as /var/lib/docker
   config.vm.provision :shell, :path => "scripts/sdb.sh"
   # provision the box with docker and build/import a base ubuntu

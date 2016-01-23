@@ -2,3 +2,4 @@
 .vagrant/
 disk.vdi
 *.*.tar
+proxy.env
