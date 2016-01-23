@@ -49,7 +49,7 @@ popd
 
 #simple test
 docker run ol7-gcc48:${DATE} gcc --version
-docker run ol7-php55info-cli:${DATE} php -v
+docker run ol7-php55info-cli:${DATE} /opt/rh/php55/root/usr/bin/php -v
 
 #delete <none> images
 NONE="`docker images -q --filter "dangling=true"`"

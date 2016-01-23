@@ -1,2 +1,2 @@
 FROM ol7-webserver-php55
-CMD ["php", "-r", "phpinfo();"]
+CMD ["/opt/rh/php55/root/usr/bin/php", "-r", "phpinfo();"]
