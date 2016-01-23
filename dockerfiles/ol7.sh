@@ -14,6 +14,7 @@ else
   yum-config-manager --installroot=/root/ol7 --enable ol7_addons
   yum-config-manager --installroot=/root/ol7 --enable ol7_optional_latest
   yum-config-manager --installroot=/root/ol7 --enable ol7_software_collections
+  yum-config-manager --installroot=/root/ol7 --enable ol7_MySQL57
   yum-config-manager --installroot=/root/ol7 --enable ol7_UEKR4
   yum-config-manager --installroot=/root/ol7 --disable ol7_UEKR3
   yum --installroot=/root/ol7 install -y glibc bash rpm yum yum-utils sudo
@@ -41,6 +42,8 @@ fi
 pushd /vagrant/dockerfiles
 docker build -t ol7-gcc48 ol7-gcc48/.
 docker tag ol7-gcc48:latest ol7-gcc48:${DATE}
+docker build -t ol7-gcc49 ol7-gcc49/.
+docker tag ol7-gcc49:latest ol7-gcc49:${DATE}
 docker build -t ol7-webserver-php55 ol7-webserver-php55/.
 docker tag ol7-webserver-php55:latest ol7-webserver-php55:${DATE}
 docker build -t ol7-php55info-cli ol7-php55info-cli/.
@@ -49,6 +52,7 @@ popd
 
 #simple test
 docker run ol7-gcc48:${DATE} gcc --version
+docker run ol7-gcc49:${DATE} gcc --version
 docker run ol7-php55info-cli:${DATE} /opt/rh/php55/root/usr/bin/php -v
 
 #delete <none> images
