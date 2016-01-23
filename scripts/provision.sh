@@ -20,3 +20,5 @@ which docker || {
 }
 
 service docker restart
+chown vagrant:docker /var/run/docker.sock
+ls -al /var/run/docker.sock
