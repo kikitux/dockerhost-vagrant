@@ -2,8 +2,14 @@
 #%Y Year, %V Week 
 DATE="`date +%Y%V`"
 
+#for deb os
 which debootstrap curl || {
   apt-get install -y debootstrap curl
+}
+
+#for rpm os
+which yum-utils yum rpm || {
+  apt-get install -y yum-utils yum rpm
 }
 
 which docker || {
