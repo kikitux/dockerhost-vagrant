@@ -2,6 +2,8 @@
 #%Y Year, %V Week 
 DATE="`date +%Y%V`"
 
+[ -f  /vagrant/proxy.env ] && source /vagrant/proxy.env
+
 #for deb os
 which debootstrap curl || {
   apt-get install -y debootstrap curl

@@ -2,14 +2,17 @@
 #%Y Year, %V Week 
 DATE="`date +%Y%V`"
 
+[ -f  /vagrant/proxy.env ] && source /vagrant/proxy.env
+
 BASE="`docker images -q ol7:${DATE}`"
 
 if [ $BASE ]; then
   echo "skipping: found image ${BASE} for today ${DATE}"
 else
-  mkdir -p /root/ol7/etc/yum.repos.d
+  mkdir -p /root/ol7/etc/yum.repos.d /etc/pki/rpm-gpg
   cp /etc/resolv.conf /root/ol7/etc/
   curl -sSL http://public-yum.oracle.com/public-yum-ol7.repo -o /root/ol7/etc/yum.repos.d/public-yum-ol7.repo
+  curl -sSL http://public-yum.oracle.com/RPM-GPG-KEY-oracle-ol7 -o /etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
   curl -sSL https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -o /root/ol7/epel-release-latest-7.noarch.rpm
   yum-config-manager --installroot=/root/ol7 --enable ol7_addons
   yum-config-manager --installroot=/root/ol7 --enable ol7_optional_latest

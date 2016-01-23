@@ -1,5 +1,7 @@
 #!/bin/bash
 
+[ -f  /vagrant/proxy.env ] && source /vagrant/proxy.env
+
 #install btrfs-tools if not present
 which btrfs || {
   apt-get install -y btrfs-tools

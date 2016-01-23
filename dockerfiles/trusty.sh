@@ -2,6 +2,8 @@
 #%Y Year, %V Week 
 DATE="`date +%Y%V`"
 
+[ -f  /vagrant/proxy.env ] && source /vagrant/proxy.env
+
 BASE="`docker images -q trusty:${DATE}`"
 
 if [ $BASE ]; then

@@ -9,9 +9,10 @@ Vagrant.configure(2) do |config|
     vb.name=vm_name
     #create disk for docker
     disk="disk.vdi"
-    vb.customize ['createhd', '--filename', disk, '--size', '5128'] unless File.exists?("disk.vdi")
+    vb.customize ['createhd', '--filename', disk, '--size', '20480'] unless File.exists?("disk.vdi")
     vb.customize ['storageattach', :id, '--storagectl', 'SATAController', '--port', 1, '--device', '0', '--type', 'hdd', '--medium', "disk.vdi"]
   end
+  config.vm.provision :shell, :path => "scripts/proxy.sh", :run => "always"
   #update apt sources to use mirror
   config.vm.provision :shell, :path => "scripts/apt.sh"
   # format the disk and mount it as /var/lib/docker

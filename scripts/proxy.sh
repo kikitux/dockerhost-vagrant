@@ -1,9 +1,15 @@
-#!/bash
+#!/bin/bash
 
 which polipo || {
   apt-get install -y polipo
 }
 
-iptables -A OUTPUT -p tcp --dport 80 -m owner --uid-owner proxy -j ACCEPT
-iptables -t nat -A OUTPUT -p tcp --dport 80 -m owner --uid-owner proxy -j ACCEPT
-iptables -t nat -A OUTPUT -p tcp --dport 80 -j REDIRECT --to-ports 8123
+http_proxy="http://127.0.0.1:8123" curl -sSL http://google.com &>/dev/null
+if [ $? -eq 0 ]; then
+  echo 'export http_proxy="http://127.0.0.1:8123"' > /vagrant/proxy.env
+  echo 'export HTTP_PROXY="http://127.0.0.1:8123"' >> /vagrant/proxy.env
+  echo 'Defaults env_keep = "http_proxy ftp_proxy"' > /etc/sudoers.d/proxy
+else
+  > /vagrant/proxy.env
+  > /etc/sudoers.d/proxy
+fi

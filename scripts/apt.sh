@@ -15,6 +15,7 @@ deb http://security.ubuntu.com/ubuntu trusty-security multiverse
 deb http://security.ubuntu.com/ubuntu trusty-security universe
 EOF
 
+[ -f  /vagrant/proxy.env ] && source /vagrant/proxy.env
 apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 40976EAF437D05B5
 apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 3B4FE6ACC0B21F32
 apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 16126D3A3E5C1192
