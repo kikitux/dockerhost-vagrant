@@ -2,7 +2,7 @@
 #%Y Year, %V Week 
 DATE="`date +%Y%V`"
 
-[ -f  /vagrant/proxy.env ] && source /vagrant/proxy.env
+#[ -f  /vagrant/proxy.env ] && source /vagrant/proxy.env
 
 #delete <none> images
 NONE="`docker images -q --filter "dangling=true"`"

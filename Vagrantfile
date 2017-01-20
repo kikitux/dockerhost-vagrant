@@ -10,15 +10,15 @@ Vagrant.configure("2") do |config|
       vb.customize ['modifyvm', :id, '--cpus', '2']
       vb.name=vm_name
       #create disk for docker
-      disk="#{File.dirname(__FILE__)}/disk.vdi"
-      vb.customize ['createhd', '--filename', disk, '--size', '20480'] unless File.exists?("disk.vdi")
-      vb.customize ['storageattach', :id, '--storagectl', 'SATAController', '--port', 1, '--device', '0', '--type', 'hdd', '--medium', disk]
+      #disk="#{File.dirname(__FILE__)}/disk.vdi"
+      #vb.customize ['createhd', '--filename', disk, '--size', '20480'] unless File.exists?("disk.vdi")
+      #vb.customize ['storageattach', :id, '--storagectl', 'SATAController', '--port', 1, '--device', '0', '--type', 'hdd', '--medium', disk]
     end
     #polipo proxy
-    dh.vm.synced_folder "polipo", "/var/cache/polipo" , :mount_options => ["uid=13,gid=13"], create: true
-    dh.vm.provision :shell, :path => "scripts/proxy.sh", :run => "always"
+    #dh.vm.synced_folder "polipo", "/var/cache/polipo" , :mount_options => ["uid=13,gid=13"], create: true
+    #dh.vm.provision :shell, :path => "scripts/proxy.sh", :run => "always"
     # format the disk and mount it as /var/lib/docker
-    dh.vm.provision :shell, :path => "scripts/sdb.sh"
+    #dh.vm.provision :shell, :path => "scripts/sdb.sh"
     # provision the box
     dh.vm.provision :shell, :path => "scripts/provision.sh"
 
